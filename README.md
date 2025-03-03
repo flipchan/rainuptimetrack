@@ -12,3 +12,7 @@ track on-chain uptime
 ### Examples:   
 
 
+### External References:  
+-   https://docs.rainlang.xyz/intro
+-   https://docs.envio.dev/docs/HyperIndex/hypersync
+-   
