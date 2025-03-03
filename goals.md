@@ -3,7 +3,9 @@
 # Cli arguments
 -  network
 -  orderbook address
--  block range 
+-  block range
+-  downtime threeshold
+
 
 
 ## Dependencies: 
