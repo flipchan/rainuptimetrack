@@ -1,0 +1,14 @@
+[package]
+name = "rainuptimetrack"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = {version = "4.5.31", features = ["derive"]}
+#rain-metadata = { git = "https://github.com/rainlanguage/rain.metadata", branch = "main", ref = "" }
+hypersync-client = "0.17.2"
+url = "2.5.4"
+serde_json = "1.0.140"
+tokio = { version = "1.43.0", features = ["macros"] }
+hypersync-format = "0.4.2"
+anyhow = "1.0.97"
