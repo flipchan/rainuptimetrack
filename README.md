@@ -23,15 +23,24 @@ todo
 
 ## Run:  
 ```bash
-./target/release/rainuptimetrack 
-error: the following required arguments were not provided:
-  --network <NETWORK>
-  --orderbook-address <ORDERBOOK_ADDRESS>
-  --downtime-threshold <DOWNTIME_THRESHOLD>
+./target/release/rainuptimetrack --help
+Simple program to greet a person
 
-Usage: rainuptimetrack --network <NETWORK> --orderbook-address <ORDERBOOK_ADDRESS> --downtime-threshold <DOWNTIME_THRESHOLD>
+Usage: rainuptimetrack [OPTIONS] --network <NETWORK> --orderbook-address <ORDERBOOK_ADDRESS> --downtime-threshold <DOWNTIME_THRESHOLD>
 
-For more information, try '--help'.
+Options:
+  -n, --network <NETWORK>
+          [possible values: ethereum, flare, base, polygon, arbitrum, linea]
+  -o, --orderbook-address <ORDERBOOK_ADDRESS>
+          Orderbook contract address
+  -b, --block-range <BLOCK_RANGE> <BLOCK_RANGE>
+          Block range in format START,END
+  -d, --downtime-threshold <DOWNTIME_THRESHOLD>
+          Downtime threshold in blocks
+  -h, --help
+          Print help
+  -V, --version
+          Print version.
 ```
 
 
