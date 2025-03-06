@@ -24,8 +24,6 @@ todo
 ## Run:  
 ```bash
 ./target/release/rainuptimetrack --help
-Simple program to greet a person
-
 Usage: rainuptimetrack [OPTIONS] --network <NETWORK> --orderbook-address <ORDERBOOK_ADDRESS> --downtime-threshold <DOWNTIME_THRESHOLD>
 
 Options:
