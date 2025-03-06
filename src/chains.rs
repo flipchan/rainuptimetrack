@@ -7,4 +7,8 @@ pub const POLYGON_RPC: &str = "https://polygon.hypersync.xyz";
 
 // router arb3 contracts
 pub const POLYGON_CONTRACT: &str = "0x4aa9aef59c7b63cd5c4b2ede81f65a4225a99d9d";
-pub const FLARE_CONTRACT: &str = "0x5376Ffa8fbE804f3D9292bc6b319b0e59Ce42311";
+pub const FLARE_CONTRACT: &str = "0xCEe8Cd002F151A536394E564b84076c41bBBcD4d";
+
+//TakeOrderV2
+pub const TAKE_ORDER_TOPIC: &str =
+    "0x10de99b9032184587540c04e1850dff94a7683ae1fcc9eb06098621c739c0275";
