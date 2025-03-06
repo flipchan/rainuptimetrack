@@ -22,6 +22,19 @@ todo
 
 
 ## Run:  
+```bash
+./target/release/rainuptimetrack 
+error: the following required arguments were not provided:
+  --network <NETWORK>
+  --orderbook-address <ORDERBOOK_ADDRESS>
+  --downtime-threshold <DOWNTIME_THRESHOLD>
+
+Usage: rainuptimetrack --network <NETWORK> --orderbook-address <ORDERBOOK_ADDRESS> --downtime-threshold <DOWNTIME_THRESHOLD>
+
+For more information, try '--help'.
+```
+
+
 See flare example
 
 ## Tests:  
