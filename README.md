@@ -22,7 +22,7 @@ todo
 
 
 ## Run:  
-
+See flare example
 
 ## Tests:  
 ```bash
@@ -91,19 +91,15 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 #### Flare:  
 ```bash 
-./target/release/rainuptimetrack -n flare -o 0x5376Ffa8fbE804f3D9292bc6b319b0e59Ce42311 -d 2 -b 38277959 38278392
+./target/release/rainuptimetrack -n flare -o 0xCEe8Cd002F151A536394E564b84076c41bBBcD4d -d 500 -b 38381480 38382480 
 Network: Flare
-Orderbook Address: 0x5376Ffa8fbE804f3D9292bc6b319b0e59Ce42311
-Block Range: 38277959 to 38278392
-Downtime Threeshold: 2
-scanned up to block 38278392
-
-Query result:
-
-Failed tx:      2
-Successfull tx: 7
-Total tx:       9
-    
+Contract Address: 0xCEe8Cd002F151A536394E564b84076c41bBBcD4d
+Block Range: 38381480 to 38382480
+Downtime Theshold: 500 blocks
+scanned up to block 38385699
+[Threshold detected]Large gap between txs in 38382374 and 38383557: 1183 blocks
+[Threshold detected]Large gap between txs in 38384377 and 38385214: 837 blocks
+Total tx:       14
 __finished__
 ```
 

@@ -15,4 +15,7 @@ fmt:
 
 run_flare:
 	build
-	./target/release/rainuptimetrack -n flare -o 0x5376Ffa8fbE804f3D9292bc6b319b0e59Ce42311 -d 2 -b 38277959 38278392
+	./target/release/rainuptimetrack -n flare -o 0xCEe8Cd002F151A536394E564b84076c41bBBcD4d -d 30 -b 38381480 38382480
+
+
+

@@ -25,6 +25,12 @@ impl ChainClient {
         client
     }
 
+    /*
+        pub fn decode_call(inputen: &str) -> {
+
+        }
+    */
+
     /// flare hypersync client
     pub fn flare_client() -> Self {
         Self {
@@ -62,6 +68,98 @@ impl ChainClient {
     }
 
     /// query a chain between a blocklimit for all tx to a contract
+    /// use this
+    pub async fn query_chain2(
+        &self,
+        block_start: u64,
+        block_stop: u64,
+        contract_address: &str,
+    ) -> Vec<QueryResponse> {
+        let clientme: Arc<Client> = Arc::new(self.client.clone()); // move into arc
+
+        let mut q: Query = serde_json::from_value(serde_json::json!( {
+                        "from_block": block_start,
+        //               "to_block": block_stop,
+        // query for transactions going to our contract
+                   "logs": [
+            {
+                "address": [
+                    contract_address
+                ]
+            }
+        ],
+
+
+                        "field_selection": {
+                            "log": [
+                                "address",
+                                "data",
+                                "number",
+                                "timestamp",
+                                "input",
+                                "to",
+                                "status",
+                                "from",
+                                "block_number",
+                                "block_hash",
+                                "value",
+                                "contract_address",
+                                "topic0",
+                                "topic1",
+                                "output",
+                                "topic2"
+                            ],
+                            "transaction": [
+                                "hash",
+                                "input",
+                                "value",
+                                "block_hash",
+                                "status",
+                                "number",
+                                "block_number",
+                                "transaction_index",
+                                "from",
+                                "output",
+                                "contract_address",
+                                "to",
+                                "value",
+                                "topic0",
+                                "topic1",
+                                "topic2"
+                            ],
+                        }
+                    }))
+        .unwrap();
+        let mut loot: Vec<QueryResponse> = Vec::new();
+
+        loop {
+            let res: QueryResponse = clientme.get(&q).await.unwrap();
+            loot.push(res.clone());
+
+            println!("scanned up to block {}", res.next_block);
+            if res.next_block >= block_stop {
+                break;
+            }
+
+            if let Some(archive_height) = res.archive_height {
+                if archive_height < res.next_block {
+                    // wait if we are at the head
+                    // notice we use explicit get_height in order to not waste data requests.
+                    // get_height is lighter compared to spamming data requests at the tip.
+                    while clientme.get_height().await.unwrap() < res.next_block {
+                        sleep(Duration::from_secs(1)).await;
+                    }
+                }
+            }
+
+            // continue query from next_block
+            q.from_block = res.next_block;
+        }
+
+        loot
+    }
+
+    /// query a chain between a blocklimit for all tx to a contract
     pub async fn query_chain(
         &self,
         block_start: u64,
@@ -90,16 +188,32 @@ impl ChainClient {
                                 "to",
                                 "status",
                                 "from",
+                                "block_number",
+                                "block_hash",
+                                "value",
+                                "contract_address",
+                                "topic0",
+                                "topic1",
+                                "output",
+                                "topic2"
                             ],
                             "transaction": [
                                 "hash",
                                 "input",
+                                "value",
+                                "block_hash",
                                 "status",
                                 "number",
+                                "block_number",
                                 "transaction_index",
                                 "from",
+                                "output",
+                                "contract_address",
                                 "to",
                                 "value",
+                                "topic0",
+                                "topic1",
+                                "topic2"
                             ],
                         }
                     }))
