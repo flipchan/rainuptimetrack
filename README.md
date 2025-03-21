@@ -1,5 +1,4 @@
 # rainuptimetrack
-track on-chain uptime
 
 ## Install Rust(if you do not have rust installed locally):
 ```bash
@@ -17,9 +16,23 @@ cd rainuptimetrack/ && cargo build --release
 ```
 
 
-## Install with nix:  
-todo
+## Build with nix:  
+```bash
+nix build . --extra-experimental-features nix-command --extra-experimental-features flakes
+```
 
+### Fuzzing:  
+Project comes with support for [libfuzzer](https://crates.io/crates/libfuzzer-sys) via [cargo-fuzz](https://github.com/rust-fuzz/cargo-fuzz)
+
+```bash
+cargo install cargo-fuzz
+cd fuzz/ 
+cargo build
+cargo fuzz list
+csv_fuzz
+f2
+cargo fuzz run <TARGET>
+```
 
 ## Run:  
 See flare example
