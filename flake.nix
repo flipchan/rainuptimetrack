@@ -1,24 +1,34 @@
 {
-  description = "Minimal Rust environment";
 
   inputs = {
+    naersk.url = "github:nix-community/naersk/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs = { self, nixpkgs, utils, naersk }:
+    utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-      in {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            rustc
-            cargo
-            rustfmt
-            clippy
-          ];
+        naersk-lib = pkgs.callPackage naersk { };
+      in
+      {
+        defaultPackage = naersk-lib.buildPackage {
+          src = ./.;
+          nativeBuildInputs = [ pkgs.capnproto ];  # Add capnproto here
         };
-      });
+        devShell = with pkgs; mkShell {
+          buildInputs = [ 
+            cargo 
+            rustc 
+            rustfmt 
+            capnproto  # Available in dev shell
+            pre-commit 
+            rustPackages.clippy 
+          ];
+          RUST_SRC_PATH = rustPlatform.rustLibSrc;
+        };
+      }
+    );
 }
 
